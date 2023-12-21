@@ -1,32 +1,36 @@
+import bg from '../../assets/bg.png'
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+    const bgStyle = {
+        backgroundImage: `url(${bg})`,
+    }
     return (
-        <div className="min-h-screen ">
-            <div className="hero-content flex-col max-w-7xl mx-auto mt-10">
+        <div className="min-h-screen bg-cover" style={bgStyle}>
+            <div className="hero-content flex-col max-w-7xl mx-auto py-8">
                 <div className="text-center">
-                    <h1 className="text-5xl font-bold">Login Now!</h1>
+                    <h1 className="text-5xl font-bold border-b border-primary">Login Now!</h1>
                 </div>
-                <div className="w-full shadow-2xl bg-base-100 ">
+                <div className="w-full border-primary border">
                     <form className="card-body">
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" placeholder="email" className="input input-bordered" required />
+                            <input type="email" placeholder="email" className="input input-bordered bg-transparent" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" placeholder="password" className="input input-bordered" required />
+                            <input type="password" placeholder="password" className="input input-bordered bg-transparent" required />
                             <label className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary">Login</button>
+                            <button className="btn btn-primary btn-outline">Login</button>
                         </div>
                     </form>
                     <label className="label px-4">

@@ -6,7 +6,7 @@ const NavBar = () => {
     <Link to='/'><li>Home</li></Link>
   </>
   return (
-    <div className="navbar max-w-7xl mx-auto border-b ">
+    <div className="navbar max-w-7xl mx-auto border-b bg-transparent ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -33,5 +33,7 @@ const NavBar = () => {
     </div>
   );
 };
+
+
 
 export default NavBar;

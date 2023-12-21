@@ -1,44 +1,87 @@
+import bg from '../../assets/bg.png'
+
 import { Link } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import Swal from 'sweetalert2';
 
 const Register = () => {
+    const bgStyle = {
+        backgroundImage: `url(${bg})`,
+    }
+
+    const handleRegister = e => {
+        e.preventDefault()
+        const form = e.target;
+        const name = form.name.value
+        const image = form.image.value
+        const email = form.email.value
+        const password = form.password.value
+        const user = { email, password, name, image }
+        console.log(user)
+
+        if (password.length < 6) {
+            e.target.reset()
+            return Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Password Must be 6 Characters Long!',
+            })
+        }
+        else if (!/[A-Z]/.test(password)) {
+            e.target.reset()
+            return Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Password Must Conatain 1 Uppercase Letter!',
+            })
+        }
+        else if (!/[!@#$%^&*()_+{}[\]:;<>,.?~\\-]/.test(password)) {
+            e.target.reset()
+            return Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Password Must Conatain 1 Special Character!',
+            })
+        }
+    }
+
     return (
-        <div className="min-h-screen ">
-            <div className="hero-content flex-col max-w-7xl mx-auto mt-10">
+        <div className="min-h-screen bg-cover" style={bgStyle}>
+            <div className="hero-content flex-col max-w-7xl mx-auto ">
                 <div className="text-center">
-                    <h1 className="text-5xl font-bold">Register Now!</h1>
+                    <h1 className="text-5xl font-bold border-b border-primary">Register Now!</h1>
                 </div>
-                <div className="w-full shadow-2xl bg-base-100 ">
-                    <form className="card-body">
+                <div className="w-full border-primary border">
+                    <form onSubmit={handleRegister} className="card-body">
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Name</span>
                             </label>
-                            <input type="text" placeholder="Name" className="input input-bordered" required />
+                            <input type="text" name='name' placeholder="Name" className="input input-bordered bg-transparent" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Image</span>
                             </label>
-                            <input type="text" placeholder="Image" className="input input-bordered" required />
+                            <input type="text" name='image' placeholder="Image" className="input input-bordered bg-transparent" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" placeholder="email" className="input input-bordered" required />
+                            <input type="email" name='email' placeholder="email" className="input input-bordered bg-transparent" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" placeholder="password" className="input input-bordered" required />
+                            <input type="password" name='password' placeholder="password" className="input input-bordered bg-transparent" required />
                             <label className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary">Login</button>
+                        <input className="btn btn-outline text-primary" type="submit" value="Register" />
                         </div>
                     </form>
                     <label className="label px-4">
