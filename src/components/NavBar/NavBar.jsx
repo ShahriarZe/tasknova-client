@@ -1,12 +1,12 @@
+import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png'
 
 const NavBar = () => {
   const links = <>
-    <li><a>Add Task</a></li>
-    <li><a>All Tasks</a></li>
+    <Link to='/'><li>Home</li></Link>
   </>
   return (
-    <div className="navbar bg-base-100 max-w-7xl mx-auto border-b ">
+    <div className="navbar max-w-7xl mx-auto border-b ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

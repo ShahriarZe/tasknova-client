@@ -7,12 +7,29 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Register from './components/Register/Register.jsx';
+import Login from './components/Register/Login.jsx';
+import Home from './components/Home/Home.jsx';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+    children:[
+      {
+        path:'/',
+        element:<Home></Home>
+      },
+      {
+        path: '/register',
+        element: <Register></Register>
+      },
+      {
+        path:'/login',
+        element:<Login></Login>
+      }
+    ]
   },
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
