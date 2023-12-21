@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png'
+import def from '../../assets/user.png'
+import useAuth from '../../Hooks/useAuth';
 
 const NavBar = () => {
+
+  const { user, logOut } = useAuth()
   const links = <>
     <Link to='/'><li>Home</li></Link>
   </>
@@ -28,8 +32,32 @@ const NavBar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
-      </div>
+                <div className="dropdown dropdown-end ">
+                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                        <div className="w-10 rounded-full">
+                            {
+                                user ? <img src={user.photoURL} alt="" /> :
+                                    <img src={def} alt="" />
+                            }
+                        </div>
+                    </label>
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3  p-2 shadow bg-base-100 rounded-box w-52 border-2 border-primary  z-10">
+                        <div className="text-xl text-center">
+                            {
+                                user && <h1 className='border-b border-primary font-bold'>{user?.displayName}</h1>
+                            }
+                        </div>
+                        <div className="">
+                            
+                            {
+                                user ? <button className="btn btn-outline w-full text-primary" onClick={logOut}>SignOut</button>
+                                    :
+                                    <Link to="/login"><button className="btn btn-outline w-full text-primary">Login</button></Link>
+                            }
+                        </div>
+                    </ul>
+                </div>
+            </div>
     </div>
   );
 };

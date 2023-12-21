@@ -1,13 +1,19 @@
 import bg from '../../assets/bg.png'
 
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import Swal from 'sweetalert2';
+import useAuth from '../../Hooks/useAuth';
+import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
     const bgStyle = {
         backgroundImage: `url(${bg})`,
     }
+
+    const location = useLocation()
+    const navigate = useNavigate()
+    const {createUser,googleSignIn}=useAuth()
 
     const handleRegister = e => {
         e.preventDefault()
@@ -21,6 +27,7 @@ const Register = () => {
 
         if (password.length < 6) {
             e.target.reset()
+            navigate(location?.state ? location.state : '/')
             return Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -43,6 +50,46 @@ const Register = () => {
                 text: 'Password Must Conatain 1 Special Character!',
             })
         }
+
+        createUser(email,password)
+        .then(result =>{
+            console.log(result.user)
+            updateProfile(result.user,{
+                displayName:name,
+                photoURL:image
+            })
+            e.target.reset()
+            Swal.fire({
+                icon:'success',
+                title: 'Success',
+                text: 'Account Created Successfully',
+            })
+        })
+        .catch(err=>{
+            console.log(err)
+            e.target.reset()
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: err.message,
+            })
+
+        })
+    }
+
+    const handleGoogleButton = ()=>{
+        googleSignIn()
+        .then(result =>{
+            console.log(result.user)
+            Swal.fire({
+                icon:'success',
+                title: 'Success',
+                text: 'Account Created Successfully',
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     return (
@@ -90,7 +137,7 @@ const Register = () => {
                         <div className="divider">continue with</div>
                         <div className="flex justify-center">
                             <div className="mb-5 flex gap-4">
-                                <button className=" btn btn-outline ">
+                                <button onClick={handleGoogleButton} className=" btn btn-outline ">
                                     <FaGoogle></FaGoogle>
                                     Google
                                 </button>
