@@ -42,35 +42,35 @@ const router = createBrowserRouter([
         element: <Login></Login>
       },
       {
-        path:'/guide',
-        element:<Guide></Guide>
+        path: '/guide',
+        element: <Guide></Guide>
       },
       {
-        path:'/feedback',
-        element:<Feedback></Feedback>
+        path: '/feedback',
+        element: <Feedback></Feedback>
       }
     ]
   },
   {
-    path:"dashboard",
-    element:<Dashboard></Dashboard>,
-    children:[
+    path: "dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
       {
-        path:'userHome',
-        element:<UserHome></UserHome>
+        path: 'userHome',
+        element: <UserHome></UserHome>
       },
       {
-        path:'alltask',
-        element:<AllTask></AllTask>
+        path: 'alltask',
+        element: <AllTask></AllTask>
       },
       {
-        path:'addtask',
-        element:<AddTask></AddTask>
+        path: 'addtask',
+        element: <AddTask></AddTask>
       },
       {
-        path:'updateTask/:id',
-        element:<TaskUpdate></TaskUpdate>,
-        loader: ()=>fetch('http://localhost:5000/task')
+        path: 'updateTask/:id',
+        element: <TaskUpdate></TaskUpdate>,
+        loader: () => fetch('https://tasknova-server.vercel.app/task')
       }
     ]
   }
@@ -78,10 +78,10 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-    <DndProvider backend={HTML5Backend}>
-    <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-      </QueryClientProvider>
+      <DndProvider backend={HTML5Backend}>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
       </DndProvider>
     </AuthProvider>
   </React.StrictMode>,

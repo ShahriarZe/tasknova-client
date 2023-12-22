@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 const AllTask = () => {
 
-    
-  
+
+
     const { user } = useAuth()
     const { refetch, data: tasks = [] } = useQuery({
         queryKey: ['tasks'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/task')
+            const res = await axios.get('https://tasknova-server.vercel.app/task')
             return res.data
         }
     })
@@ -29,7 +29,7 @@ const AllTask = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/task/${id}`)
+                axios.delete(`https://tasknova-server.vercel.app/task/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             refetch()
@@ -48,12 +48,12 @@ const AllTask = () => {
         <div className="grid grid-cols-1 gap-4">
             {
                 userTask.map(task => (<div
-                 
-                 
-                  key={task._id} className="card w-96 bg-base-100 shadow-xl border">
+
+
+                    key={task._id} className="card w-96 bg-base-100 shadow-xl border">
                     <div
-                    
-                    className="card-body">
+
+                        className="card-body">
                         <h2 className="card-title">{task.title}</h2>
                         <p>{task.description}</p>
                         <div className="flex">

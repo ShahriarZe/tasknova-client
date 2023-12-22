@@ -6,36 +6,36 @@ import useAuth from '../../../Hooks/useAuth';
 
 const priorities = ['Low', 'Moderate', 'High'];
 const TaskUpdate = () => {
-    const {user}= useAuth()
+    const { user } = useAuth()
     const { handleSubmit,
         reset,
         register,
         formState: { errors } } = useForm()
 
 
-        const taskData = useLoaderData()
-        const {id}= useParams()
+    const taskData = useLoaderData()
+    const { id } = useParams()
 
-        const tasks = taskData.find(task=>task._id == id)
-        const {_id}=tasks
+    const tasks = taskData.find(task => task._id == id)
+    const { _id } = tasks
 
-        const onSubmit = (data) => {
-            console.log(data)
-            axios.put(`http://localhost:5000/update/${_id}`, data)
-                .then(res => {
-                    console.log(res.data)
-                    if (res.data.modifiedCount > 0) {
-                        reset
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Success',
-                            text: 'Task Updated Successfully',
-                        })
-                    }
-                })
-    
-    
-        };
+    const onSubmit = (data) => {
+        console.log(data)
+        axios.put(`https://tasknova-server.vercel.app/update/${_id}`, data)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.modifiedCount > 0) {
+                    reset
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Task Updated Successfully',
+                    })
+                }
+            })
+
+
+    };
     return (
         <div className='max-w-5xl'>
             <form onSubmit={handleSubmit(onSubmit)}>

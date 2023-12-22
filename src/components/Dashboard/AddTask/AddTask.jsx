@@ -14,7 +14,7 @@ const AddTask = () => {
 
     const onSubmit = (data) => {
         console.log(data)
-        axios.post('http://localhost:5000/task', data)
+        axios.post('https://tasknova-server.vercel.app/task', data)
             .then(res => {
                 console.log(res.data)
                 if (res.data.insertedId) {
