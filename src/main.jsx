@@ -12,7 +12,9 @@ import Login from './components/Register/Login.jsx';
 import Home from './components/Home/Home.jsx';
 import AuthProvider from './Providers/AuthProvider.jsx';
 import Dashboard from './components/Dashboard/Dashboard/Dashboard.jsx';
+import UserHome from './components/Dashboard/UserHome/UserHome.jsx';
 import AllTask from './components/Dashboard/AllTask.jsx/AllTask.jsx';
+import AddTask from './components/Dashboard/AddTask/AddTask.jsx';
 
 
 const router = createBrowserRouter([
@@ -39,8 +41,16 @@ const router = createBrowserRouter([
     element:<Dashboard></Dashboard>,
     children:[
       {
+        path:'userHome',
+        element:<UserHome></UserHome>
+      },
+      {
         path:'alltask',
         element:<AllTask></AllTask>
+      },
+      {
+        path:'addtask',
+        element:<AddTask></AddTask>
       }
     ]
   }
