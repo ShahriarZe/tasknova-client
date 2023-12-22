@@ -8,7 +8,11 @@ const NavBar = () => {
   const { user, logOut } = useAuth()
   const links = <>
     <Link className='mr-4' to='/'><li>Home</li></Link>
-    <Link to='/dashboard/userHome'><li>Task Manager</li></Link>
+    {
+      user &&  <Link to='/dashboard/userHome'><li>Task Manager</li></Link>
+    }
+    <Link className='ml-4' to='/guide'><li>Guide</li></Link>
+    <Link className='ml-4' to='/feedback'><li>Feedback</li></Link>
   </>
   return (
     <div className="navbar max-w-7xl mx-auto border-b bg-transparent ">

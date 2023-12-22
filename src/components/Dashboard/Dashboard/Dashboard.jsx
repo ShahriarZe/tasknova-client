@@ -16,6 +16,7 @@ const Dashboard = () => {
           <li><NavLink to='/dashboard/userHome'>User Home</NavLink></li>
           <li><NavLink to='/dashboard/alltask'>All Task</NavLink></li>
           <li><NavLink to='/dashboard/addtask'>Add Task</NavLink></li>
+          <li><NavLink to='/'>Home</NavLink></li>
         </ul>
 
       </div>

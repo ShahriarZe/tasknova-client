@@ -20,6 +20,8 @@ import TaskUpdate from './components/Dashboard/TaskUpdate/TaskUpdate.jsx';
 const queryClient = new QueryClient()
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import Guide from './components/Home/Guide/Guide.jsx';
+import Feedback from './components/Home/Feedback/Feedback.jsx';
 
 
 const router = createBrowserRouter([
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login></Login>
+      },
+      {
+        path:'/guide',
+        element:<Guide></Guide>
+      },
+      {
+        path:'/feedback',
+        element:<Feedback></Feedback>
       }
     ]
   },

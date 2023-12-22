@@ -23,7 +23,7 @@ const Login = () => {
         .then(result =>{
             console.log(result.user)
             e.target.reset()
-            navigate(location?.state ? location.state : '/')
+            navigate(location?.state ? location.state : '/dashboard/userHome')
             Swal.fire({
                 icon:'success',
                 title: 'Success',
@@ -50,7 +50,7 @@ const Login = () => {
             Swal.fire({
                 icon:'success',
                 title: 'Success',
-                text: 'Account Created Successfully',
+                text: 'Logged in Successfully',
             })
         })
         .catch(err => {
